@@ -1,0 +1,45 @@
+@model RAS.Bootcamp.mvc.Models.Entities.Barang;
+
+@{
+    ViewData["Title"] = "UpdateData";
+}
+
+<body>
+    <div id="container">
+        <h3>Create Product</h3>
+        <form action="UpdateData" method="Post">
+            <input type="hidden" asp-for="IdBarang"></input>
+            <table>
+                <tr>
+                    <td>Masukan Code : </td>
+                    <td class = "td2"> <input type="text" id = "Code" placeholder = "Input Name" class = "input" asp-for = "Code" 
+                    value = "@Model.Code"></td>
+                </tr>
+                <tr>
+                    <td>Masukan Nama : </td>
+                    <td class = "td2"> <input type="text" id = "Nama" placeholder = "Input Price" class = "input" asp-for = "Nama"
+                    value = "@Model.Nama"></td>             
+                </tr>
+                <tr>
+                    <td>Masukan Description : </td>
+                    <td class = "td2"> <textarea class = "input" id = "Description" asp-for = "Description"
+                    value = "@Model.Description"></textarea></td>
+                </tr>
+                <tr>
+                    <td>Masukan Harga : </td>
+                    <td class = "td2"> <input type="number" id = "Harga" placeholder = "Input Price" class = "input" asp-for = "Harga"
+                    value = "@Model.Harga"></td>
+                </tr>
+                <tr>
+                    <td>Masukan Stok : </td>
+                    <td class = "td2"> <input type="number" id = "Harga" placeholder = "Input Stok" class = "input" asp-for = "stok"
+                    value = "@Model.stok"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            </table> 
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>

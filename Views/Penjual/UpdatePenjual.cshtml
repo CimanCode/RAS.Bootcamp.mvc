@@ -1,0 +1,22 @@
+@model RAS.Bootcamp.mvc.Models.Entities.Penjual;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<h1>Form Update</h1>
+<form action="UpdatePenjual" method="Post">
+  <input type="hidden" asp-for="IdPenjual"></input>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Nama Toko</label>
+    <input type="text" class="form-control" id="Nama Toko" aria-describedby="Nama" placeholder="Masukan Nama Toko" asp-for="Nama_Toko"
+    value="@Model.Nama_Toko">
+    <small id="Nama" class="form-text text-muted">Tolong Masukan Nama Toko Disini</small>
+  </div>
+  <div class="form-group">
+    <label for="text">Alamat</label>
+    <input type="text" class="form-control" id="Alamat" placeholder="Masukan Alamat" asp-for="Alamat"
+    value="@Model.Alamat">
+    <small id="Nama" class="form-text text-muted">Tolong Masukan Alamat Disini</small>
+  </div>
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>

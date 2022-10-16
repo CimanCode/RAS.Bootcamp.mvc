@@ -1,0 +1,42 @@
+@model RAS.Bootcamp.mvc.Models.Entities.Barang;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<body>
+    <div id="container">
+        <h3>Create Product</h3>
+        <form method="Post">
+        <table>
+                <tr>
+                    <td>Input Code : </td>
+                    <td class = "td2"> <input type="text" id = "Code" placeholder = "Input Code" class = "input" asp-for = "Code" ></td>
+                </tr>
+                <tr>
+                    <td>Input Name : </td>
+                    <td class = "td2"> <input type="text" id = "Nama" placeholder = "Input Name" class = "input" asp-for = "Nama"></td>
+                </tr>
+                <tr>
+                    <td>Input Description : </td>
+                    <td class = "td2"> <textarea class = "input" id = "Description" placeholder = "Input Description" asp-for = "Description"></textarea></td>
+                </tr>
+                <tr>
+                    <td>Input Price : </td>
+                    <td class = "td2"> <input type="number" id = "Harga" placeholder = "Input Price" class = "input" asp-for = "Harga"></td>
+                </tr>
+                 <tr>
+                    <td>Input Stok : </td>
+                    <td class = "td2"> <input type="number" id = "Harga" placeholder = "Input Price" class = "input" asp-for = "stok"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class = "td2">
+                        <input type = "submit" value = "Create" class = "btn btn-primary" class="form-group col-md-6"> 
+                        <a asp-action = "create" class = "btn btn-secondary btn-block" class="form-group col-md-6">Back To List</a>
+                    </td>
+                </tr>
+            </table> 
+        </form>
+    </div>
+</body>
