@@ -5,7 +5,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace RAS.Bootcamp.mvc.Models.Migrations
 {
-    public partial class ContentDb : Migration
+    public partial class valueDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -77,9 +77,11 @@ namespace RAS.Bootcamp.mvc.Models.Migrations
                     Code = table.Column<int>(type: "integer", nullable: false),
                     Nama = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: true),
                     Description = table.Column<string>(type: "text", nullable: true),
-                    Harga = table.Column<decimal>(type: "numeric", nullable: false),
+                    Harga = table.Column<int>(type: "integer", nullable: false),
                     stok = table.Column<int>(type: "integer", nullable: false),
-                    IdPenjual = table.Column<int>(type: "integer", nullable: false)
+                    IdPenjual = table.Column<int>(type: "integer", nullable: false),
+                    FileName = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
+                    URL = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true)
                 },
                 constraints: table =>
                 {

@@ -11,8 +11,8 @@ using RAS.Bootcamp.mvc.Models;
 namespace RAS.Bootcamp.mvc.Models.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221016000226_ContentDb")]
-    partial class ContentDb
+    [Migration("20221019035114_valueDb")]
+    partial class valueDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,8 +37,12 @@ namespace RAS.Bootcamp.mvc.Models.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<decimal>("Harga")
-                        .HasColumnType("numeric");
+                    b.Property<string>("FileName")
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.Property<int>("Harga")
+                        .HasColumnType("integer");
 
                     b.Property<int>("IdPenjual")
                         .HasColumnType("integer");
@@ -46,6 +50,10 @@ namespace RAS.Bootcamp.mvc.Models.Migrations
                     b.Property<string>("Nama")
                         .HasMaxLength(10)
                         .HasColumnType("character varying(10)");
+
+                    b.Property<string>("URL")
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
 
                     b.Property<int>("stok")
                         .HasColumnType("integer");

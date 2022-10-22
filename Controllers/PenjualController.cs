@@ -24,7 +24,7 @@ public class PenjualController : Controller
     [HttpPost]
     public IActionResult CreatePenjual(Penjual br)
     {
-        br.IdUser = 1;
+        br.IdUser = 3;
         _dbContext.Penjual.Add(br);
         _dbContext.SaveChanges();
         return RedirectToAction("IndexPenjual");

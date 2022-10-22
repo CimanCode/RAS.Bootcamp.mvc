@@ -1,3 +1,6 @@
+@using System.Collections;
+@using Microsoft.AspNetCore.Authorization;
+@using Microsoft.AspNetCore.Authentication;
 @model IEnumerable<RAS.Bootcamp.mvc.Models.Entities.Barang>
 
 @{
@@ -33,9 +36,22 @@
          <th class="thead">
             @Html.DisplayNameFor(model => model.IdPenjual)
         </th>
+        <th class="thead">
+            @Html.DisplayNameFor(model => model.FileName)
+        </th>
+        @if(User.IsInRole("PENJUAL"))
+        {
         <th class="thead" class="text-center">
             Action
         </th>
+        }
+         @if(User.IsInRole("ADMIN"))
+        {
+        <th class="thead" class="text-center">
+            Action
+        </th>
+        }
+       
     </tr>
 
 @foreach (var item in Model) {
@@ -61,15 +77,37 @@
         <td class="thead">
             @Html.DisplayFor(modelItem => item.IdPenjual)
         </td>
+        <td class="thead">
+            <img alt="Image" width="150" height="150" src="@item.URL">
+        </td>
+        @if(User.IsInRole("PENJUAL"))
+        {
         <td>
             <a type="Update" class="btn btn-success" asp-route-id="@item.IdBarang" asp-controller="Product" asp-action="UpdateData">Update</a>
             <a type="Delete" class="btn btn-danger" asp-route-id="@item.IdBarang" asp-controller="Product" asp-action="DeleteData">Delete</a>
         </td>
+        }
+        @if(User.IsInRole("ADMIN"))
+        {
+        <td>
+            <a type="Update" class="btn btn-success" asp-route-id="@item.IdBarang" asp-controller="Product" asp-action="UpdateData">Update</a>
+            <a type="Delete" class="btn btn-danger" asp-route-id="@item.IdBarang" asp-controller="Product" asp-action="DeleteData">Delete</a>
+        </td>
+        }
     </tr>       
 }
+@if(User.IsInRole("PENJUAL"))
+{
 <td>
    <a class="btn btn-outline-primary" asp-controller="Product" asp-action="index"><i class="far fa-plus-square"></i>Create</a>
 </td>
+}
+@if(User.IsInRole("ADMIN"))
+{
+<td>
+   <a class="btn btn-outline-primary" asp-controller="Product" asp-action="index"><i class="far fa-plus-square"></i>Create</a>
+</td> 
+}
 
 
 

@@ -1,4 +1,4 @@
-@model RAS.Bootcamp.mvc.Models.Entities.Barang;
+@model RAS.Bootcamp.mvc.Models.ProductRequest;
 
 @{
     ViewData["Title"] = "UpdateData";
@@ -7,7 +7,7 @@
 <body>
     <div id="container">
         <h3>Create Product</h3>
-        <form action="UpdateData" method="Post">
+        <form action="UpdateData" method="Post" enctype="multipart/form-data">
             <input type="hidden" asp-for="IdBarang"></input>
             <table>
                 <tr>
@@ -34,6 +34,10 @@
                     <td>Masukan Stok : </td>
                     <td class = "td2"> <input type="number" id = "Harga" placeholder = "Input Stok" class = "input" asp-for = "stok"
                     value = "@Model.stok"></td>
+                </tr>
+                 <tr>
+                    <td>Select Image : </td>
+                    <td class = "td2"> <input type="file" id = "FileImage" placeholder = "Select Image" class = "input" asp-for = "FileImage"></td>
                 </tr>
                 <tr>
                     <td></td>

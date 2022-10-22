@@ -1,4 +1,4 @@
-@model RAS.Bootcamp.mvc.Models.Entities.Barang;
+@model RAS.Bootcamp.mvc.Models.ProductRequest;
 
 @{
     ViewData["Title"] = "Home Page";
@@ -7,7 +7,7 @@
 <body>
     <div id="container">
         <h3>Create Product</h3>
-        <form method="Post">
+        <form action="Index" method="Post" role="form" enctype="multipart/form-data">
         <table>
                 <tr>
                     <td>Input Code : </td>
@@ -23,11 +23,15 @@
                 </tr>
                 <tr>
                     <td>Input Price : </td>
-                    <td class = "td2"> <input type="number" id = "Harga" placeholder = "Input Price" class = "input" asp-for = "Harga"></td>
+                    <td class = "td2"> <input type="int" id = "Harga" placeholder = "Input Price" class = "input" asp-for = "Harga"></td>
                 </tr>
                  <tr>
                     <td>Input Stok : </td>
                     <td class = "td2"> <input type="number" id = "Harga" placeholder = "Input Price" class = "input" asp-for = "stok"></td>
+                </tr>
+                <tr>
+                    <td>Select Image : </td>
+                    <td class = "td2"> <input type="file" id = "FileName" placeholder = "Input Image" class = "input" asp-for = "FileImage" name="FileImage" accept="image/*"></td>
                 </tr>
                 <tr>
                     <td></td>

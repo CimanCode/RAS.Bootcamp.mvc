@@ -24,7 +24,7 @@ public class PembeliController : Controller
     [HttpPost]
     public IActionResult CreatePembeli(Pembeli br)
     {
-        br.IdUser = 1;
+        br.IdUser = 3;
         _dbContext.Pembelies.Add(br);
         _dbContext.SaveChanges();
         return RedirectToAction("IndexPembeli");   
