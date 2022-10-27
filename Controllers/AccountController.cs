@@ -53,6 +53,7 @@ public class AccountController : Controller
             new Claim(ClaimTypes.Name, user.Username),
             new Claim("Fullname", user.Username),
             new Claim(ClaimTypes.Role, user.tipe),
+            new Claim("ID", user.IdUser.ToString()),
         };
 
         var calimsIdentity = new ClaimsIdentity
@@ -78,6 +79,7 @@ public class AccountController : Controller
             return RedirectToAction("Login");
         }
 
+    [HttpGet]
     public IActionResult Register()
     {
         return View();
@@ -109,7 +111,6 @@ public class AccountController : Controller
         _dbContext.Penjual.Add(Penjual);
 
         _dbContext.SaveChanges();
-
         return RedirectToAction("Login");
     }
 

@@ -11,7 +11,7 @@ using RAS.Bootcamp.mvc.Models;
 namespace RAS.Bootcamp.mvc.Models.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221019035114_valueDb")]
+    [Migration("20221025132946_valueDb")]
     partial class valueDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,7 @@ namespace RAS.Bootcamp.mvc.Models.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("FileName")
+                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
 
@@ -52,6 +53,7 @@ namespace RAS.Bootcamp.mvc.Models.Migrations
                         .HasColumnType("character varying(10)");
 
                     b.Property<string>("URL")
+                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
 
@@ -63,6 +65,67 @@ namespace RAS.Bootcamp.mvc.Models.Migrations
                     b.HasIndex("IdPenjual");
 
                     b.ToTable("Barang");
+                });
+
+            modelBuilder.Entity("RAS.Bootcamp.mvc.Models.Entities.ItemTransaksi", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Harga")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("IdBarang")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("IdTransaksi")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Jumlah")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("SubTotal")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdBarang");
+
+                    b.HasIndex("IdTransaksi");
+
+                    b.ToTable("ItemTransaksis");
+                });
+
+            modelBuilder.Entity("RAS.Bootcamp.mvc.Models.Entities.Keranjang", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("HargaSatuan")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("IdBarang")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("IdUser")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Jumlah")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdBarang");
+
+                    b.HasIndex("IdUser");
+
+                    b.ToTable("Keranjangs");
                 });
 
             modelBuilder.Entity("RAS.Bootcamp.mvc.Models.Entities.Pembeli", b =>
@@ -120,6 +183,43 @@ namespace RAS.Bootcamp.mvc.Models.Migrations
                     b.ToTable("Penjual");
                 });
 
+            modelBuilder.Entity("RAS.Bootcamp.mvc.Models.Entities.Transaksi", b =>
+                {
+                    b.Property<int>("IdTransaksi")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdTransaksi"));
+
+                    b.Property<string>("AlamatPengiriman")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("IdUser")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("MetodePembayaran")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("StatusBayar")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("StatusTransaksi")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("TotalHarga")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("IdTransaksi");
+
+                    b.HasIndex("IdUser");
+
+                    b.ToTable("Transaksis");
+                });
+
             modelBuilder.Entity("RAS.Bootcamp.mvc.Models.Entities.User", b =>
                 {
                     b.Property<int>("IdUser")
@@ -160,6 +260,44 @@ namespace RAS.Bootcamp.mvc.Models.Migrations
                     b.Navigation("Penjual");
                 });
 
+            modelBuilder.Entity("RAS.Bootcamp.mvc.Models.Entities.ItemTransaksi", b =>
+                {
+                    b.HasOne("RAS.Bootcamp.mvc.Models.Entities.Barang", "Barang")
+                        .WithMany()
+                        .HasForeignKey("IdBarang")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RAS.Bootcamp.mvc.Models.Entities.Transaksi", "Transaksi")
+                        .WithMany("ItemTransaksi")
+                        .HasForeignKey("IdTransaksi")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Barang");
+
+                    b.Navigation("Transaksi");
+                });
+
+            modelBuilder.Entity("RAS.Bootcamp.mvc.Models.Entities.Keranjang", b =>
+                {
+                    b.HasOne("RAS.Bootcamp.mvc.Models.Entities.Barang", "Barang")
+                        .WithMany()
+                        .HasForeignKey("IdBarang")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RAS.Bootcamp.mvc.Models.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("IdUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Barang");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("RAS.Bootcamp.mvc.Models.Entities.Pembeli", b =>
                 {
                     b.HasOne("RAS.Bootcamp.mvc.Models.Entities.User", "User")
@@ -182,9 +320,25 @@ namespace RAS.Bootcamp.mvc.Models.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("RAS.Bootcamp.mvc.Models.Entities.Transaksi", b =>
+                {
+                    b.HasOne("RAS.Bootcamp.mvc.Models.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("IdUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("RAS.Bootcamp.mvc.Models.Entities.Penjual", b =>
                 {
                     b.Navigation("Barang");
+                });
+
+            modelBuilder.Entity("RAS.Bootcamp.mvc.Models.Entities.Transaksi", b =>
+                {
+                    b.Navigation("ItemTransaksi");
                 });
 #pragma warning restore 612, 618
         }

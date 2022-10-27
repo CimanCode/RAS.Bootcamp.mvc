@@ -13,7 +13,6 @@ public class Penjual {
     public string? Nama_Toko{get; set;}
     [StringLength(20)]
     public string? Alamat{get; set;}
-
     public virtual User? User { get; set;}
     public virtual ICollection<Barang>? Barang { get; set; }
 

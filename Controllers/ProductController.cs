@@ -50,7 +50,7 @@ public class ProductController : Controller
         var Url = $"{Request.Scheme}://{Request.Host}{Request.PathBase}/Image/{fileImage}";
         _dbContext.Barang.Add(new Barang
         {
-            IdPenjual = 18,
+            IdPenjual = newProduct.IdBarang,
             Code = newProduct.Code,
             Nama = newProduct.Nama,
             Harga = newProduct.Harga,
@@ -61,21 +61,22 @@ public class ProductController : Controller
         });
         _dbContext.SaveChanges();
         List<Barang> data = _dbContext.Barang.ToList();
-        return RedirectToAction("create");
+        return RedirectToAction("create", data);
     
     }
-
     
     //Untuk nampilin data
-    
+    [HttpGet]
+    [Authorize(Roles = "PENJUAL")]
     public IActionResult create()
     {
-        List<Barang> barangs = _dbContext.Barang.ToList();
+        var dataid = int.Parse(User.Claims.First(x => x.Type == "ID").Value);
+        var Penjual = _dbContext.Penjual.FirstOrDefault(y => y.IdUser == dataid);
+        List<Barang> barangs = _dbContext.Barang.Where(x => x.IdPenjual == Penjual.IdUser).ToList();
         return View(barangs);
     } 
 
     //Untuk Update Data
-    
     [HttpGet]
     [Authorize(Roles = "PENJUAL, ADMIN")]
     public IActionResult UpdateData(int id)
@@ -89,7 +90,6 @@ public class ProductController : Controller
             Harga = Id.Harga,
             Description = Id.Description,
             stok = Id.stok,
-            
         };
         return View(updateData);
     }

@@ -6,6 +6,5 @@ public class RegisterRequest
     public string Password{get; set;} = null!;
     public string FullName{get; set;} = null!;
     public string tipe{get; set;} = null!;
-    public string NoHandPhone{get; set;}
     public string Alamat{get; set;}
 }

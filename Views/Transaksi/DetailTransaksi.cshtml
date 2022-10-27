@@ -1,0 +1,76 @@
+@model RAS.Bootcamp.mvc.Models.Entities.Transaksi
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@{
+    ViewBag.Title = "AddToCart";
+}
+
+<h2 style = "text-align:center">Data Order</h2>
+
+<table class="table">
+    <tr>
+        <th class="thead">
+            ID INVOICE
+        </th>
+        <th class="thead">
+            TOTAL HARGA
+        </th>
+        <th class="thead">
+            STATUS TRANSAKSI
+        </th>
+        <th class="thead">
+            STATUS BAYAR
+        </th>
+        <th class="thead">
+            METODE PEMBAYARAN
+        </th>
+        <th class="thead">
+            ALAMAT
+        </th>
+        <th class="thead" class="text-align:center">
+            Action
+        </th>
+    </tr>
+    <tr>
+        <td class="thead">
+              @($"INV{Model.IdTransaksi.ToString().PadLeft(8, '0')}")
+          </td>
+          <td class="thead">
+              @Model.TotalHarga
+          </td>
+          <td class="thead">
+              @Model.StatusTransaksi
+          </td>
+          <td class="thead">
+              @Model.StatusBayar
+          </td>
+          <td class="thead">
+              @Model.MetodePembayaran
+          </td>
+          <td class="thead">
+              @Model.AlamatPengiriman
+          </td>
+      </tr>
+      <td>
+    @if((User.IsInRole("PENJUAL")) && (@Model.StatusBayar == "Telah di Bayar"))
+    {
+      <td>
+        <a type="Update" class="btn btn-success" asp-route-id="@Model.IdTransaksi" asp-controller="Transaksi" asp-action="KonfirTransaksi">Konfirmasi Pembayaran</a>
+      </td>
+    }
+    @if(@Model.StatusTransaksi == "Sedang di Proses")
+    {
+       <td>
+        <a type="Update" class="btn btn-success" asp-route-id="@Model.IdTransaksi" asp-controller="Transaksi" asp-action="BatalTransaksi">Batalkan Transaksi</a>
+      </td>
+    }
+
+    @if((User.IsInRole("PENJUAL")) && (@Model.StatusTransaksi == "Sedang di Proses"))
+    {
+       <td>
+        <a type="Update" class="btn btn-success" asp-route-id="@Model.IdTransaksi" asp-controller="Transaksi" asp-action="KirimBarang">Kirim Barang</a>
+      </td>
+    } 

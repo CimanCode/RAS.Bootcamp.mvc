@@ -1,6 +1,5 @@
 @model RAS.Bootcamp.mvc.Models.RegisterRequest;
 
-<div class="row">
     <div class="col-md-12">
         <h1 class="md-3">Register</h1>
         @if(ViewBag.ErrorMessage != null && ViewBag.ErrorMessage != ""){
@@ -8,7 +7,7 @@
                 @ViewBag.ErrorMessage
             </div>
         }
-        <form role="form" asp-action="Register" method="post">
+        <form role="form" asp-action="Register" method="Post">
             <div class="form-group">
                 <label for="Username">
                     Username
@@ -34,12 +33,6 @@
                 </label>
                 <input type="text" class="form-control" asp-for="Alamat" id="Alamat" />
             </div>
-             <div class="form-group">
-                <label for="No HandPhone">
-                    No HandPhone
-                </label>
-                <input type="text" class="form-control" asp-for="NoHandPhone" id="NoHandPhone" />
-            </div>
             <div class="form-group">
                 <label for="Tipe">
                     Tipe
@@ -50,10 +43,8 @@
                     <option value="PEMBELI">PEMBELI</option>
                 </select>
             </div>
-
-            <button type="submit" class="btn btn-primary">
+             <button type="submit" class="btn btn-primary">
                 Submit
             </button>
         </form>
     </div>
-</div>

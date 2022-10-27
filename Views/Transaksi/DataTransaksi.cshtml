@@ -1,0 +1,64 @@
+@model IEnumerable<RAS.Bootcamp.mvc.Models.Entities.Transaksi>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@{
+    ViewBag.Title = "index";
+}
+
+<h2 class = "center">Data Transaksi</h2>
+
+<table class="table">
+    <tr>
+        <th class="thead">
+            NO INVOICE
+        </th>
+        <th class="thead">
+            ALAMAT PENGIRIMAN
+        </th>
+        <th class="thead">
+            TOTAL HARGA
+        </th>
+         <th class="thead">
+            METODE PEMBAYARAN
+        </th>
+         <th class="thead">
+            STATUS TRANSAKSI
+        </th>
+         <th class="thead">
+            STATUS PEMBAYARAN
+        </th>
+        <th class="thead" class="text-align:center">
+            Action
+        </th>
+    </tr>
+@if(Model != null)
+{
+  @foreach (var item in Model) {
+      <tr>
+          <td class="thead">
+              @($"INV{item.IdTransaksi.ToString().PadLeft(8, '0')}")
+          </td class="thead">
+          <td class="thead">
+              @Html.DisplayFor(modelItem => item.AlamatPengiriman)
+          </td>
+          <td class="thead">
+              @Html.DisplayFor(modelItem => item.TotalHarga)
+          </td>
+          <td class="thead">
+              @Html.DisplayFor(modelItem => item.MetodePembayaran)
+          </td>
+          <td class="thead">
+              @Html.DisplayFor(modelItem => item.StatusTransaksi)
+          </td>
+          <td class="thead">
+              @Html.DisplayFor(modelItem => item.StatusBayar)
+          </td>
+          <td>
+              <a type="Update" class="btn btn-success" asp-route-id="@item.IdTransaksi" asp-controller="Transaksi" asp-action="DetailTransaksi">Detail</a>
+          </td>
+      </tr>       
+  }
+}

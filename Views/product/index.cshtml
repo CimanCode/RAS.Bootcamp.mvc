@@ -7,7 +7,7 @@
 <body>
     <div id="container">
         <h3>Create Product</h3>
-        <form action="Index" method="Post" role="form" enctype="multipart/form-data">
+        <form asp-action="index" method="Post" enctype="multipart/form-data">
         <table>
                 <tr>
                     <td>Input Code : </td>
@@ -36,7 +36,7 @@
                 <tr>
                     <td></td>
                     <td class = "td2">
-                        <input type = "submit" value = "Create" class = "btn btn-primary" class="form-group col-md-6"> 
+                        <input type = "submit" class = "btn btn-primary" class="form-group col-md-6"> 
                         <a asp-action = "create" class = "btn btn-secondary btn-block" class="form-group col-md-6">Back To List</a>
                     </td>
                 </tr>

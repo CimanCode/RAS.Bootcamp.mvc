@@ -10,6 +10,19 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/RAS.Bootcamp.mvc.styles.css" asp-append-version="true" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap.css" />
+
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- font awesome style -->
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="~/css/responsive.css" rel="stylesheet" />
 </head>
 <body>
     <header>
@@ -33,6 +46,9 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="create">Data Produk</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Transaksi" asp-action="DataTransaksi">Data Transaksi</a>
                                 </li>
                             </ul>
                             <ul class="navbar-nav d-flex justify-content-end">
@@ -87,17 +103,6 @@
                             </ul>
                         }
                         </ul>
-                        
-                        @* {
-                             <ul class="navbar-nav d-flex justify-content-end">
-                            <li class="nav-item">
-                                <a class="btn btn-primary" href="@Url.ActionLink("Login")">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="btn" href="@Url.ActionLink("Register")">Register</a>
-                            </li>
-                            </ul>
-                        } *@
                 </div>
             </div>
         </nav>
@@ -107,16 +112,24 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted navbar-dark bg-light">
-        <div class="container text-light">
+    @* <footer class="border-top footer text-muted navbar-dark bg-light">
+        <div class="container text-dark">
             &copy; 2022 - RAS.Bootcamp.mvc - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer> *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- jQery -->
+    <script src="~/js/jquery-3.4.1.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="~/js/bootstrap.js"></script>
+    <!-- custom js -->
+    <script src="~/js/custom.js" asp-append-version="true"></script>
+    <!-- Google Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
+    <!-- End Google Map -->
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
